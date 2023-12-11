@@ -157,5 +157,45 @@ static void EditEntry(ASEANPhonebook phonebook)
         EditInformation(student, choice);
     }
 }
+static void EditInformation(Student student, int choice)
+{
+    switch (choice)
+    {
+        case 1:
+            Console.Write("Enter new student number: ");
+            student.StudentNumber = Console.ReadLine();
+            break;
+        case 2:
+            Console.Write("Enter new surname: ");
+            student.Surname = Console.ReadLine();
+            break;
+        case 3:
+            Console.Write("Enter new gender (M for male, F for female): ");
+            student.Gender = char.ToUpper(Console.ReadKey().KeyChar);
+            Console.WriteLine();
+            break;
+        case 4:
+            Console.Write("Enter new occupation: ");
+            student.Occupation = Console.ReadLine();
+            break;
+        case 5:
+            Console.Write("Enter new country code: ");
+            student.CountryCode = int.Parse(Console.ReadLine());
+            break;
+        case 6:
+            Console.Write("Enter new area code: ");
+            student.AreaCode = int.Parse(Console.ReadLine());
+            break;
+        case 7:
+            Console.Write("Enter new phone number: ");
+            student.PhoneNumber = Console.ReadLine();
+            break;
+        default:
+            Console.WriteLine("Invalid choice. Please try again.");
+            break;
+    }
+
+    Console.WriteLine($"New Information: {student}");
+}
 }
 
