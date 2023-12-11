@@ -5,7 +5,6 @@ using System.Linq;
 namespace FINAL_PROJECT_ITE1
 
 class Student
-
 {
     public string StudentNumber { get; set; }
     public string Surname { get; set; }
@@ -22,7 +21,7 @@ class Student
         return $"{Surname}, {FirstName}, with student number {StudentNumber}, is a {Occupation.ToLower()}. " +
                $"The given phone number is {CountryCode}-{AreaCode}-{PhoneNumber}";
     }
-
+}
 class ASEANPhonebook
 {
     private List<Student> students;
