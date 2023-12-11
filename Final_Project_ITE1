@@ -15,13 +15,13 @@ class Student
     public int AreaCode { get; set; }
     public string PhoneNumber { get; set; }
 
-
- public override string ToString()
+    public override string ToString()
     {
         return $"{Surname}, {FirstName}, with student number {StudentNumber}, is a {Occupation.ToLower()}. " +
-               $"The given phone number is {CountryCode}-{AreaCode}-{PhoneNumber}";
+               $"The given phone number is {PhoneNumber}, area code is {AreaCode}, country code is {CountryCode}";
     }
 }
+
 class ASEANPhonebook
 {
     private List<Student> students;
@@ -91,112 +91,113 @@ class Program
     }
 
     static void StoreToPhonebook(ASEANPhonebook phonebook)
-{
-    do
     {
-        Student student = new Student();
+        do
+        {
+            Student student = new Student();
 
-        Console.Write("Enter student number: ");
-        student.StudentNumber = Console.ReadLine();
-
-        Console.Write("Enter surname: ");
-        student.Surname = Console.ReadLine();
-
-        Console.Write("Enter first name: ");
-        student.FirstName = Console.ReadLine();
-
-        Console.Write("Enter occupation: ");
-        student.Occupation = Console.ReadLine();
-
-        Console.Write("Enter gender (M for male, F for female): ");
-        student.Gender = char.ToUpper(Console.ReadKey().KeyChar);
-        Console.WriteLine();
-
-        Console.Write("Enter country code: ");
-        student.CountryCode = int.Parse(Console.ReadLine());
-
-        Console.Write("Enter area code: ");
-        student.AreaCode = int.Parse(Console.ReadLine());
-
-        Console.Write("Enter number: ");
-        student.PhoneNumber = Console.ReadLine();
-
-        phonebook.AddStudent(student);
-
-        Console.Write("Do you want to enter another entry [Y/N]? ");
-    } while (Console.ReadLine().ToUpper() == "Y");
-}
-
-static void EditEntry(ASEANPhonebook phonebook)
-{
-    Console.Write("Enter student number: ");
-    string studentNumber = Console.ReadLine();
-
-    Student student = phonebook.GetStudentByNumber(studentNumber);
-
-    if (student == null)
-    {
-        Console.WriteLine("Student not found.");
-        return;
-    }
-
-    Console.WriteLine($"Here is the existing information about {studentNumber}: {student}");
-
-    while (true)
-    {
-        Console.WriteLine("\nWhich of the following information you want to change?");
-        Console.WriteLine("[1] Student number [2] Surname [3] Gender [4] Occupation");
-        Console.WriteLine("[5] Country code [6] Area code [7] Phone number [8] Go Back To Main Menu");
-
-        Console.Write("Enter choice: ");
-        int choice = int.Parse(Console.ReadLine());
-
-        if (choice == 8)
-            break;
-
-        EditInformation(student, choice);
-    }
-}
-static void EditInformation(Student student, int choice)
-{
-    switch (choice)
-    {
-        case 1:
-            Console.Write("Enter new student number: ");
+            Console.Write("Enter student number: ");
             student.StudentNumber = Console.ReadLine();
-            break;
-        case 2:
-            Console.Write("Enter new surname: ");
+
+            Console.Write("Enter surname: ");
             student.Surname = Console.ReadLine();
-            break;
-        case 3:
-            Console.Write("Enter new gender (M for male, F for female): ");
+
+            Console.Write("Enter first name: ");
+            student.FirstName = Console.ReadLine();
+
+            Console.Write("Enter occupation: ");
+            student.Occupation = Console.ReadLine();
+
+            Console.Write("Enter gender (M for male, F for female): ");
             student.Gender = char.ToUpper(Console.ReadKey().KeyChar);
             Console.WriteLine();
-            break;
-        case 4:
-            Console.Write("Enter new occupation: ");
-            student.Occupation = Console.ReadLine();
-            break;
-        case 5:
-            Console.Write("Enter new country code: ");
+
+            Console.Write("Enter country code: ");
             student.CountryCode = int.Parse(Console.ReadLine());
-            break;
-        case 6:
-            Console.Write("Enter new area code: ");
+
+            Console.Write("Enter area code: ");
             student.AreaCode = int.Parse(Console.ReadLine());
-            break;
-        case 7:
-            Console.Write("Enter new phone number: ");
+
+            Console.Write("Enter number: ");
             student.PhoneNumber = Console.ReadLine();
-            break;
-        default:
-            Console.WriteLine("Invalid choice. Please try again.");
-            break;
+
+            phonebook.AddStudent(student);
+
+            Console.Write("Do you want to enter another entry [Y/N]? ");
+        } while (Console.ReadLine().ToUpper() == "Y");
     }
 
-    Console.WriteLine($"New Information: {student}");
-}
+    static void EditEntry(ASEANPhonebook phonebook)
+    {
+        Console.Write("Enter student number: ");
+        string studentNumber = Console.ReadLine();
+
+        Student student = phonebook.GetStudentByNumber(studentNumber);
+
+        if (student == null)
+        {
+            Console.WriteLine("Student not found.");
+            return;
+        }
+
+        Console.WriteLine($"Here is the existing information about {studentNumber}: {student}");
+
+        while (true)
+        {
+            Console.WriteLine("\nWhich of the following information you want to change?");
+            Console.WriteLine("[1] Student number [2] Surname [3] Gender [4] Occupation");
+            Console.WriteLine("[5] Country code [6] Area code [7] Phone number [8] Go Back To Main Menu");
+
+            Console.Write("Enter choice: ");
+            int choice = int.Parse(Console.ReadLine());
+
+            if (choice == 8)
+                break;
+
+        EditInformation(student, choice);
+        }
+    }
+    static void EditInformation(Student student, int choice)
+    {
+        switch (choice)
+        {
+            case 1:
+                Console.Write("Enter new student number: ");
+                student.StudentNumber = Console.ReadLine();
+                break;
+            case 2:
+                Console.Write("Enter new surname: ");
+                student.Surname = Console.ReadLine();
+                break;
+            case 3:
+                Console.Write("Enter new gender (M for male, F for female): ");
+                student.Gender = char.ToUpper(Console.ReadKey().KeyChar);
+                Console.WriteLine();
+                break;
+            case 4:
+                Console.Write("Enter new occupation: ");
+                student.Occupation = Console.ReadLine();
+                break;
+            case 5:
+                Console.Write("Enter new country code: ");
+                student.CountryCode = int.Parse(Console.ReadLine());
+                break;
+            case 6:
+                Console.Write("Enter new area code: ");
+                student.AreaCode = int.Parse(Console.ReadLine());
+                break;
+            case 7:
+                Console.Write("Enter new phone number: ");
+                student.PhoneNumber = Console.ReadLine();
+                break;
+            default:
+                Console.WriteLine("Invalid choice. Please try again.");
+                break;
+        }
+
+        Console.WriteLine($"New Information: {student}");
+    }
+
     static int GetCountryCode(int choice)
     {
         switch (choice)
@@ -209,5 +210,44 @@ static void EditInformation(Student student, int choice)
             default: return 0;
         }
     }
+
+    static void SearchByCountry(ASEANPhonebook phonebook)
+    {
+        List<int> countryCodes = new List<int>();
+
+        while (true)
+        {
+            Console.WriteLine("From which country:");
+            Console.WriteLine("[1] Philippines [2] Thailand [3] Singapore [4] Indonesia [5] Malaysia [6] ALL [0] No More");
+
+            int choice = int.Parse(Console.ReadLine());
+
+            if (choice == 0)
+                break;
+
+            countryCodes.Add(GetCountryCode(choice));
+        }
+
+        Console.WriteLine($"Country Codes: {string.Join(", ", countryCodes)}");
+
+        List<Student> result = phonebook.GetStudentsByCountry(countryCodes.ToArray());
+
+        Console.WriteLine($"Result Count: {result.Count}");
+
+        if (result.Count > 0)
+        {
+            Console.WriteLine("Here are the students:");
+
+            foreach (var student in result)
+            {
+                Console.WriteLine(student);
+            }
+        }
+        else
+        {
+            Console.WriteLine("No students found for the selected countries.");
+        }
+    }
 }
+
 
