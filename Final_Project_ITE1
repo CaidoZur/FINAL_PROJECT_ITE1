@@ -89,4 +89,43 @@ class Program
             }
         }
     }
+
+    static void StoreToPhonebook(ASEANPhonebook phonebook)
+{
+    do
+    {
+        Student student = new Student();
+
+        Console.Write("Enter student number: ");
+        student.StudentNumber = Console.ReadLine();
+
+        Console.Write("Enter surname: ");
+        student.Surname = Console.ReadLine();
+
+        Console.Write("Enter first name: ");
+        student.FirstName = Console.ReadLine();
+
+        Console.Write("Enter occupation: ");
+        student.Occupation = Console.ReadLine();
+
+        Console.Write("Enter gender (M for male, F for female): ");
+        student.Gender = char.ToUpper(Console.ReadKey().KeyChar);
+        Console.WriteLine();
+
+        Console.Write("Enter country code: ");
+        student.CountryCode = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter area code: ");
+        student.AreaCode = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter number: ");
+        student.PhoneNumber = Console.ReadLine();
+
+        phonebook.AddStudent(student);
+
+        Console.Write("Do you want to enter another entry [Y/N]? ");
+    } while (Console.ReadLine().ToUpper() == "Y");
 }
+
+}
+
