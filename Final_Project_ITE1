@@ -127,5 +127,35 @@ class Program
     } while (Console.ReadLine().ToUpper() == "Y");
 }
 
+static void EditEntry(ASEANPhonebook phonebook)
+{
+    Console.Write("Enter student number: ");
+    string studentNumber = Console.ReadLine();
+
+    Student student = phonebook.GetStudentByNumber(studentNumber);
+
+    if (student == null)
+    {
+        Console.WriteLine("Student not found.");
+        return;
+    }
+
+    Console.WriteLine($"Here is the existing information about {studentNumber}: {student}");
+
+    while (true)
+    {
+        Console.WriteLine("\nWhich of the following information you want to change?");
+        Console.WriteLine("[1] Student number [2] Surname [3] Gender [4] Occupation");
+        Console.WriteLine("[5] Country code [6] Area code [7] Phone number [8] Go Back To Main Menu");
+
+        Console.Write("Enter choice: ");
+        int choice = int.Parse(Console.ReadLine());
+
+        if (choice == 8)
+            break;
+
+        EditInformation(student, choice);
+    }
+}
 }
 
