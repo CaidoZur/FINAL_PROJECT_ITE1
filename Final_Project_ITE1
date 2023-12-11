@@ -197,5 +197,17 @@ static void EditInformation(Student student, int choice)
 
     Console.WriteLine($"New Information: {student}");
 }
+    static int GetCountryCode(int choice)
+    {
+        switch (choice)
+        {
+            case 1: return 63; // Republic of the Philippines
+            case 2: return 66; // Kingdom of Thailand
+            case 3: return 65; // Republic of Singapore
+            case 4: return 62; // Republic of Indonesia
+            case 5: return 60; // Federation of Malaysia
+            default: return 0;
+        }
+    }
 }
 
